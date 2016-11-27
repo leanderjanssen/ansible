@@ -1,0 +1,9 @@
+---
+# tasks file for swarm-worker
+
+- debug: var=hostvars['rpinode1.local']['swarm_token_worker']['stdout']
+
+- name: join swarm
+  command: docker swarm join --token {{ hostvars['rpinode1.local']['swarm_token_worker']['stdout'] }} {{ hostvars['rpinode1.local']['ansible_eth0']['ipv4']['address'] }}
+  args:
+    creates: /var/lib/docker/swarm/state.json

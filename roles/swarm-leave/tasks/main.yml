@@ -1,0 +1,8 @@
+---
+# tasks file for swarm-leave
+
+- name: leave swarm cluster
+  command: docker swarm leave
+  args:
+    removes: /var/lib/docker/swarm/state.json
+  notify: remove nodes from cluster

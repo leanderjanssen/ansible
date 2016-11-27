@@ -1,0 +1,15 @@
+---
+# handlers file for swarm-leave
+
+- name: remove nodes from cluster
+  command: docker node ls --filter name={{ ansible_hostname }}
+  delegate_to: "{{ swarm_manager }}" 
+  register: node_status
+  until: "'Down' in node_status.stdout" 
+  retries: 10
+  delay: 8 
+  notify: remove from cluster
+
+- name: remove from cluster
+  command: docker node rm {{ ansible_hostname }}
+  delegate_to: "{{ swarm_manager }}"

@@ -1,0 +1,15 @@
+---
+# tasks file for docker
+
+- name: configure docker daemon to listen on both unix and tcp socket
+  lineinfile:
+    dest: /etc/systemd/system/docker.service.d/overlay.conf
+    state: present
+    regexp: '^ExecStart=/usr/bin/dockerd --storage-driver overlay -H fd://'
+    line: 'ExecStart=/usr/bin/dockerd --storage-driver overlay -H fd:// -H tcp://0.0.0.0:2376'
+  register: result
+  notify: restart docker
+
+- name: reload systemd if docker.service has changed
+  command: systemctl daemon-reload
+  when: result|changed

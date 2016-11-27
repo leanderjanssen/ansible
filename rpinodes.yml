@@ -1,0 +1,44 @@
+---
+- hosts: all
+  become: yes
+  serial: 1
+
+  pre_tasks:
+    - include: tasks/pre.yml
+
+  roles:
+    - role: common
+      tags: common
+    - role: led
+      tags: led
+    - role: docker
+      tags: docker
+
+  post_tasks:
+    - include: tasks/post.yml
+
+- hosts: swarm-manager
+  become: yes
+
+  pre_tasks:
+    - include: tasks/pre.yml
+
+  roles:
+    - role: swarm-head
+      tags: swarm-head
+
+  post_tasks:
+    - include: tasks/post.yml
+ 
+- hosts: swarm-workers
+  become: yes
+
+  pre_tasks:
+    - include: tasks/pre.yml
+
+  roles:
+    - role: swarm-worker
+      tags: swarm-worker
+
+  post_tasks:
+    - include: tasks/post.yml

@@ -1,0 +1,7 @@
+rpinode[1:5].local
+
+[swarm-manager]
+rpinode1.local
+
+[swarm-workers]
+rpinode[2:5].local

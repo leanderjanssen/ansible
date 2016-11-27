@@ -1,0 +1,6 @@
+---
+# vars file for led
+leds_scripts:
+  - colors
+  - fade
+  - rgb

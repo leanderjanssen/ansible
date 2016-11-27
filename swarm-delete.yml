@@ -1,0 +1,13 @@
+---
+- hosts: swarm-manager
+  become: yes
+
+  pre_tasks:
+    - include: tasks/pre.yml
+
+  roles:
+    - role: swarm-delete
+      tags: swarm-delete
+
+  post_tasks:
+    - include: tasks/post.yml

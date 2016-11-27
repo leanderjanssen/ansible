@@ -1,0 +1,13 @@
+---
+- hosts: swarm-workers
+  become: yes
+
+  pre_tasks:
+    - include: tasks/pre.yml
+
+  roles:
+    - role: swarm-leave
+      tags: swarm-leave
+
+  post_tasks:
+    - include: tasks/post.yml

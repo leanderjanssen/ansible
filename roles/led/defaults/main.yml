@@ -1,0 +1,5 @@
+---
+# defaults file for led
+leds_pin_red: 22
+leds_pin_green: 23
+leds_pin_blue: 24

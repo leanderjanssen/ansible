@@ -1,0 +1,7 @@
+---
+# tasks file for swarm-delete
+
+- name: delete swarm cluster
+  command: docker swarm leave --force
+  args:
+    removes: /var/lib/docker/swarm/state.json

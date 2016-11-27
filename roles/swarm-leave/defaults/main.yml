@@ -1,0 +1,4 @@
+---
+# defaults file for swarm-leave
+
+swarm_manager: "rpinode1.local"

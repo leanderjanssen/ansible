@@ -1,0 +1,4 @@
+- name: Indicate Ansible is finished deploying to the server.
+  command: /usr/bin/rgb green
+  changed_when: false
+  tags: post

@@ -1,0 +1,4 @@
+- name: Indicate Ansible is deploying to the server.
+  command: /usr/bin/rgb red
+  changed_when: false
+  tags: pre
